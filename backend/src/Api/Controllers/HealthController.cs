@@ -28,17 +28,12 @@ public class HealthController : ControllerBase
     /// Performs a health check and returns the current API status.
     /// Used by load balancers, container orchestrators, and monitoring systems.
     /// </summary>
-    /// <param name="cancellationToken">Token to cancel the operation if needed.</param>
     /// <returns>Health status wrapped in standard envelope format.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(ItemResponseDto<HealthResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<ItemResponseDto<HealthResponseDto>>> GetHealthAsync(
-        CancellationToken cancellationToken)
+    public ActionResult<ItemResponseDto<HealthResponseDto>> GetHealth()
     {
-        // Simulate async operation for consistency with other endpoints
-        await Task.CompletedTask;
-
         var currentTimestamp = DateTime.UtcNow;
         var correlationId = HttpContext.Items["TransactionId"]?.ToString() ?? Guid.NewGuid().ToString();
         var assemblyVersion = typeof(HealthController).Assembly.GetName().Version?.ToString() ?? "1.0.0";
