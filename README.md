@@ -2,6 +2,8 @@
 
 A minimal full-stack application template for demonstrating GitHub Copilot capabilities.
 
+> **📋 Note:** This is a **demo/starter template** designed to showcase how organizations can configure and leverage GitHub Copilot (instructions, prompts, skills, and agents) within a real-world project structure. The development standards, patterns, and configurations included here are **illustrative examples** — they do not represent any proprietary or organization-specific standards. Feel free to use this as a template and adapt the standards to your own team's needs.
+
 ## Overview
 
 - **Backend:** .NET 8 Web API with Entity Framework Core
