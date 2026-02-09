@@ -5,7 +5,8 @@ namespace Api.Tests.Integration;
 
 /// <summary>
 /// Custom web application factory for integration testing.
-/// Configures the test server with in-memory database and test settings.
+/// Configures the test server with testing environment settings.
+/// Future: Add in-memory database configuration when DbContext is implemented.
 /// </summary>
 public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {

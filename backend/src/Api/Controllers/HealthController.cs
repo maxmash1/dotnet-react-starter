@@ -62,7 +62,7 @@ public class HealthController : ControllerBase
             },
             Links = new LinksDto
             {
-                Self = $"{Request.Scheme}://{Request.Host}/v1/health",
+                Self = $"{Request.Scheme}://{Request.Host}{Request.PathBase}{Request.Path}",
                 Next = null,
                 Prev = null
             }

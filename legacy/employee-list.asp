@@ -23,7 +23,7 @@ End If
 Session("LastSelectedDept") = selectedDepartmentCode
 
 ' Database connection configuration
-dbConnectionString = "Provider=SQLOLEDB;Server=LEGACYDB01;Database=HRSystem;Trusted_Connection=Yes;"
+dbConnectionString = "Provider=SQLOLEDB;Server=YOUR_SERVER;Database=YOUR_DATABASE;Trusted_Connection=Yes;"
 
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -125,7 +125,7 @@ Set recordsetEmployees = Nothing
 %>
 
     <p style="margin-top: 20px; font-size: 12px; color: #666;">
-        Generated: <%= Now() %> | Session ID: <%= Session.SessionID %>
+        Generated: <%= Now() %> | Request ID: <%= Now() %>
     </p>
 </body>
 </html>
