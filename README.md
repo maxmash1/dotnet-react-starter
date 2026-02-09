@@ -10,7 +10,38 @@ A minimal full-stack application template for demonstrating GitHub Copilot capab
 - **Frontend:** React 18 + TypeScript + Vite + Tailwind CSS
 - **Testing:** xUnit + Moq (backend)
 
-## Quick Start
+## Getting Started with Codespaces (Recommended)
+
+The fastest way to get started — no local setup required.
+
+1. Click the green **"Use this template"** button → **Create a new repository**
+2. In your new repo, click **Code** → **Codespaces** → **Create codespace on main**
+3. Wait for the environment to build (installs .NET 8 SDK, Node.js 20, and all dependencies automatically)
+4. Once ready, start the backend and frontend:
+
+```bash
+# Terminal 1 — Backend
+cd backend
+dotnet run --project src/Api
+```
+
+```bash
+# Terminal 2 — Frontend
+cd frontend
+npm run dev
+```
+
+- **Backend API:** Port `5000` (Swagger UI at `/swagger`)
+- **Frontend:** Port `5173` (auto-opens in preview)
+
+> Both ports are auto-forwarded. Codespaces will show notifications when they're ready.
+
+## Local Development
+
+### Prerequisites
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [Node.js 20+](https://nodejs.org/)
 
 ### Backend
 
@@ -36,11 +67,12 @@ The frontend will be available at `http://localhost:5173`.
 ## Project Structure
 
 ```
+├── .devcontainer/             # Codespaces / Dev Container config
 ├── backend/
-│   ├── src/Api/           # Web API project
-│   └── tests/Api.Tests/   # Unit tests
-├── frontend/              # React + TypeScript application
-├── legacy/                # Classic ASP files (for migration demo)
+│   ├── src/Api/               # Web API project
+│   └── tests/Api.Tests/       # Unit tests
+├── frontend/                  # React + TypeScript application
+├── legacy/                    # Classic ASP files (for migration demo)
 └── .github/
     ├── copilot-instructions.md  # Organization standards
     ├── agents/                   # Copilot agents
