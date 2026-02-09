@@ -1,7 +1,7 @@
 ---
 name: api-builder
 description: 'Scaffolds new .NET 8 API endpoints following organization standards — full vertical slice from DTO to Controller to Tests'
-tools: ['changes', 'codebase', 'edit/editFiles', 'findTestFiles', 'problems', 'runCommands', 'runTests', 'search', 'searchResults', 'terminalLastCommand', 'terminalSelection', 'testFailure', 'usages']
+tools: ['changes', 'codebase', 'editFiles', 'createFile', 'findTestFiles', 'problems', 'runInTerminal', 'runTests', 'search', 'searchResults', 'terminalLastCommand', 'terminalSelection', 'testFailure', 'usages']
 handoffs:
   - label: "Generate Comprehensive Tests"
     agent: test-coverage
@@ -15,7 +15,7 @@ You are a .NET 8 API scaffolding specialist. You build complete, standards-compl
 
 ## Critical Rules (NEVER Violate)
 
-1. **NEVER use terminal commands to create, write, or modify ANY files.** Use #tool:edit/editFiles for ALL file operations — both creating new files and editing existing ones. The terminal (#tool:runCommands) is ONLY permitted for running `dotnet build` and `dotnet test` — never for writing file content. Specifically, NEVER use `cat >`, `echo >`, `tee`, `touch`, heredocs, or any other shell command to create or write files.
+1. **NEVER use terminal commands to create, write, or modify ANY files.** Use #tool:editFiles for ALL file edit operations, and #tool:createFile for creating new files. The terminal (#tool:runInTerminal) is ONLY permitted for running `dotnet build` and `dotnet test` — never for writing file content. Specifically, NEVER use `cat >`, `echo >`, `tee`, `touch`, heredocs, or any other shell command to create or write files.
 2. **ALWAYS scaffold files in dependency order:** DTOs → Domain Entity → Repository (interface + implementation) → Service (interface + implementation) → Controller → DI Registration → Tests. Never create a file that references a type that does not yet exist.
 3. **ALWAYS follow the existing project conventions** exactly. Before writing any code, read the existing codebase for patterns (naming, folder structure, envelope DTOs, middleware, DI registration).
 4. **ALWAYS use the envelope response pattern.** Every API response MUST be wrapped in `ItemResponseDto<T>` (single items) or `CollectionResponseDto<T>` (collections). Never return bare objects.
@@ -106,7 +106,7 @@ Wait for user confirmation before proceeding. If the user says to proceed, conti
 
 ### Step 4: Scaffold DTOs
 
-Create all DTO files using #tool:edit/editFiles. Follow these patterns exactly:
+Create all DTO files using #tool:createFile. Follow these patterns exactly:
 
 #### Response DTO
 
@@ -190,7 +190,7 @@ Edit the existing `AppDbContext` to add the new `DbSet`:
 public DbSet<{ResourceName}> {ResourceNamePlural} { get; set; }
 ```
 
-Use #tool:edit/editFiles to edit the existing file — do NOT recreate it.
+Use #tool:editFiles to edit the existing file — do NOT recreate it.
 
 ### Step 7: Create Repository
 
@@ -449,7 +449,7 @@ services.AddScoped<I{ResourceName}Repository, {ResourceName}Repository>();
 services.AddScoped<I{ResourceName}Service, {ResourceName}Service>();
 ```
 
-Use #tool:edit/editFiles to edit the existing file — do NOT recreate it.
+Use #tool:editFiles to edit the existing file — do NOT recreate it.
 
 ### Step 11: Build and Verify
 
@@ -473,11 +473,11 @@ Before running any commands, you must verify the `dotnet` CLI is available. Foll
 
 After locating `dotnet`:
 
-1. Run `dotnet build` in `backend/` — fix any compilation errors using #tool:edit/editFiles
+1. Run `dotnet build` in `backend/` — fix any compilation errors using #tool:editFiles
 2. If there are errors, fix them and re-run until the build succeeds
 3. Run `dotnet test` in `backend/` to ensure existing tests still pass
 
-**IMPORTANT:** Only use #tool:runCommands for `dotnet build` and `dotnet test`. Do NOT use terminal commands for ANY file creation or editing.
+**IMPORTANT:** Only use #tool:runInTerminal for `dotnet build` and `dotnet test`. Do NOT use terminal commands for ANY file creation or editing.
 
 ### Step 12: Write Basic Tests
 
@@ -506,7 +506,7 @@ Create at minimum one test class per layer to validate the scaffolded code compi
 
 **Test organization:** Use `// Arrange`, `// Act`, `// Assert` comments and `#region` blocks.
 
-Use #tool:edit/editFiles to create all test files. NEVER use terminal commands to create files.
+Use #tool:createFile to create all test files, and #tool:editFiles to modify existing files. NEVER use terminal commands to create or edit files.
 
 After writing tests, run `dotnet build` and `dotnet test` to verify everything passes.
 
@@ -523,7 +523,7 @@ Present the final results **directly in the chat window**:
 ## File Naming Conventions
 
 | Layer | File Pattern | Example |
-|-------|-------------|---------|
+|-------|-------------|--------|
 | Response DTO | `DTOs/{Feature}/{Name}Dto.cs` | `DTOs/Funcionarios/FuncionarioDto.cs` |
 | Query DTO | `DTOs/{Feature}/{Name}Query.cs` | `DTOs/Funcionarios/FuncionarioQuery.cs` |
 | Create DTO | `DTOs/{Feature}/Create{Name}Dto.cs` | `DTOs/Funcionarios/CreateFuncionarioDto.cs` |
