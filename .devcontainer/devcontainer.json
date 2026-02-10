@@ -6,6 +6,10 @@
       "version": "20"
     }
   },
+  "containerEnv": {
+    "ASPNETCORE_HTTP_PORTS": "5000",
+    "ASPNETCORE_ENVIRONMENT": "Development"
+  },
   "forwardPorts": [5000, 5173],
   "portsAttributes": {
     "5000": {

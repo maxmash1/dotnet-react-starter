@@ -3,8 +3,7 @@
  * Handles request/response formatting and error handling.
  */
 
-const BACKEND_SERVICE_URL =
-  import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+const BACKEND_SERVICE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 /**
  * Custom error class for API failures with status code info.
