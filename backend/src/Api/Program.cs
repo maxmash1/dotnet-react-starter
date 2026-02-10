@@ -68,6 +68,9 @@ webApplication.UseTransactionId();
 webApplication.UseAuthorization();
 webApplication.MapControllers();
 
+// Redirect root URL to Swagger UI for developer convenience
+webApplication.MapGet("/", () => Results.Redirect("/swagger"));
+
 webApplication.Run();
 
 // Make Program class accessible for integration tests
